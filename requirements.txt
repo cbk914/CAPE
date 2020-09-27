@@ -38,7 +38,7 @@ networkx>=2.1
 regex
 graphviz>=0.8.4
 pydot>=1.2.4
-olefile==0.45.1
+olefile==0.46
 mixbox
 matplotlib==3.3.2
 numpy==1.19.2
