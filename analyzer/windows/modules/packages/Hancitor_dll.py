@@ -7,23 +7,18 @@ import shutil
 
 from lib.common.abstracts import Package
 
-class Extraction_dll(Package):
-    """CAPE Extraction DLL analysis package."""
+class Hancitor_Dll(Package):
+    """CAPE Hancitor DLL analysis package."""
     PATHS = [
         ("SystemRoot", "system32", "rundll32.exe"),
     ]
-
-    def __init__(self, options={}, config=None):
-        """@param options: options dict."""
-        self.config = config
-        self.options = options
-        self.options["extraction"] = "1"
 
     def start(self, path):
         rundll32 = self.get_path("rundll32.exe")
         function = self.options.get("function", "#1")
         arguments = self.options.get("arguments")
         dllloader = self.options.get("dllloader")
+        self.options["hancitor"] = "1"
 
         # Check file extension.
         ext = os.path.splitext(path)[-1].lower()
@@ -35,7 +30,7 @@ class Extraction_dll(Package):
             os.rename(path, new_path)
             path = new_path
 
-        args = "{0},{1}".format(path, function)
+        args = "\"{0}\",{1}".format(path, function)
         if arguments:
             args += " {0}".format(arguments)
 
@@ -45,4 +40,3 @@ class Extraction_dll(Package):
             rundll32 = newname
 
         return self.execute(rundll32, args, path)
-        

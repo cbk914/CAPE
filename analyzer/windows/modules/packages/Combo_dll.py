@@ -7,8 +7,8 @@ import shutil
 
 from lib.common.abstracts import Package
 
-class Extraction_dll(Package):
-    """CAPE Extraction DLL analysis package."""
+class Combo_dll(Package):
+    """CAPE Combo DLL analysis package."""
     PATHS = [
         ("SystemRoot", "system32", "rundll32.exe"),
     ]
@@ -17,7 +17,7 @@ class Extraction_dll(Package):
         """@param options: options dict."""
         self.config = config
         self.options = options
-        self.options["extraction"] = "1"
+        self.options["combo"] = "1"
 
     def start(self, path):
         rundll32 = self.get_path("rundll32.exe")
@@ -45,4 +45,3 @@ class Extraction_dll(Package):
             rundll32 = newname
 
         return self.execute(rundll32, args, path)
-        
