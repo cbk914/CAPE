@@ -33,7 +33,7 @@ pyinstaller
 sqlalchemy
 # upx
 maec
-oletools==0.56
+oletools==0.60
 networkx>=2.1
 regex
 graphviz>=0.8.4
